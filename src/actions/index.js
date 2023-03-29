@@ -25,9 +25,16 @@ export const heroesFetchingDelete = (id) => {
 }
 
 export const onAddHeroesFetching = (newHero) => {
-    console.log(newHero)
     return {
         type: 'HEROES_FETCHING_ADD',
         payload: newHero
+    }
+}
+
+export const filtersFetched = (filters) => {
+    console.log(filters)
+    return {
+        type: 'FILTERS_FETCHING',
+        filterElements: filters
     }
 }

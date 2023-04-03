@@ -27,7 +27,7 @@ const HeroesListItem = (props) => {
     return (
         <li 
             className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
-            <img src="http://www.stpaulsteinbach.org/wp-content/uploads/2014/09/unknown-hero.jpg" 
+            <img src="https://e7.pngegg.com/pngimages/49/613/png-clipart-computer-icons-avatar-user-profile-avatar-heroes-dark.png" 
                  className="img-fluid w-25 d-inline" 
                  alt="unknown hero" 
                  style={{'objectFit': 'cover'}}/>

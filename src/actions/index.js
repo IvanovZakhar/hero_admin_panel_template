@@ -32,9 +32,16 @@ export const onAddHeroesFetching = (newHero) => {
 }
 
 export const filtersFetched = (filters) => {
-    console.log(filters)
+ 
     return {
         type: 'FILTERS_FETCHING',
         filterElements: filters
+    }
+}
+
+export const onFilterHero = (newHeroes) => {
+    return {
+        type: 'FILTER_HEROES_FETCHING',
+        filterHero: newHeroes
     }
 }

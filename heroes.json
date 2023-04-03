@@ -13,10 +13,52 @@
       "element": "water"
     },
     {
-      "id": "eaadfb6f-680f-4068-acc5-50627169f8cc",
-      "name": "wrqrq",
-      "description": "",
-      "element": ""
+      "name": "324324",
+      "description": "3243244",
+      "element": "Я владею элементом...",
+      "id": "57b1df62-987f-44b6-b98d-c20045d9df8b"
+    },
+    {
+      "name": "324324",
+      "description": "3243244",
+      "element": "fire",
+      "id": "84630174-f0a9-4c2e-a2e5-837661eaaf99"
+    },
+    {
+      "name": "324324",
+      "description": "3243244",
+      "element": "water",
+      "id": "ec241e1d-0c75-45ff-b2b2-a346ac9c14fc"
+    },
+    {
+      "name": "324324",
+      "description": "3243244",
+      "element": "wind",
+      "id": "9355dcd2-c6f7-4e68-9807-36c6e3adf660"
+    },
+    {
+      "name": "324324",
+      "description": "3243244",
+      "element": "earth",
+      "id": "7489de1a-5e4d-4369-8378-e0e77fb99048"
+    },
+    {
+      "name": "324324",
+      "description": "324",
+      "element": "Я владею элементом...",
+      "id": "925f3183-918e-42fa-b1bd-b4b0419327fb"
+    },
+    {
+      "name": "324324",
+      "description": "324",
+      "element": "Я владею элементом...",
+      "id": "288290bb-d2fc-47ef-9b52-69ffad969301"
+    },
+    {
+      "name": "324324",
+      "description": "324",
+      "element": "Я владею элементом...",
+      "id": "12ba428e-550b-4c5b-86b9-b389bb201ad4"
     }
   ],
   "filters": [
@@ -25,6 +67,18 @@
       "water": "Вода",
       "wind": "Ветер",
       "earth": "Земля"
+    },
+    {
+      "name": "324324",
+      "text": "32423432",
+      "element": "water",
+      "id": "18eeca8a-11bf-4336-b93c-ac401940bc6a"
+    },
+    {
+      "name": "324324",
+      "text": "32423432",
+      "element": "water",
+      "id": "21901945-67ac-4b7d-bd0b-b2ab51f1dbb4"
     }
   ]
 }

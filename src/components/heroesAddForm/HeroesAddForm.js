@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import {useHttp} from '../../hooks/http.hook';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from "react-hook-form";
-import { filtersFetched } from '../../actions';
+import { filtersFetched, onAddHeroesFetching } from '../../actions';
 // Задача для этого компонента:
 // Реализовать создание нового героя с введенными данными. Он должен попадать
 // в общее состояние и отображаться в списке + фильтроваться
@@ -28,11 +28,16 @@ const HeroesAddForm = () => {
 
     const {request} = useHttp();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    
-   const element = getOptions(filters[0])
+    const element = getOptions(filters[0])
+    const onSubmitServers = (hero) => {
+        hero.id = uuidv4();
+
+        request("http://localhost:3001/heroes", "POST", `${JSON.stringify(hero)}`).then(data => dispatch(onAddHeroesFetching(data)))
+    }
+
     return (
         <form className="border p-4 shadow-lg rounded" 
-              onSubmit={handleSubmit(data => console.log(data))}>
+              onSubmit={handleSubmit(onSubmitServers)}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
                 <input 
@@ -55,7 +60,7 @@ const HeroesAddForm = () => {
                 <label htmlFor="text" className="form-label fs-4">Описание</label>
                 <textarea
                     required
-                    {...register("text", {required:"Обязательное поле",
+                    {...register("description", {required:"Обязательное поле",
                     maxLength: {
                                value: 20,
                                message: "Максимальное число символов 20"
@@ -67,10 +72,20 @@ const HeroesAddForm = () => {
          
                      
                     />
+                     <div className="red">{errors.text ? errors.text.message : null}</div>
             </div>
-
+         
             <div className="mb-3">
-                        {element}
+                <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
+                    <select 
+                        {...register("element", { required: "Обязательное поле" })}
+                        className="form-select" 
+                        id="element" 
+                        name="element">
+                            <option>Я владею элементом...</option>
+                            {element}
+                    </select>
+                    <div className="red">{errors.text ? errors.element.message : null}</div>
             </div>
 
             <button type="submit" className="btn btn-primary">Создать</button>
@@ -79,26 +94,22 @@ const HeroesAddForm = () => {
 }
 
 const getOptions = (data) =>{
+   
     const optionKeys = data ? Object.keys(data[0]) : null;
     const optionValues = data ? Object.values(data[0]) : null;
     const elem = optionKeys ? optionKeys.map((item, i) => {
+        
         return (
             <>
-                <option value={item}>{optionValues[i]}</option> 
+                <option  key={i} value={item}>{optionValues[i]}</option> 
             </>
         )
     }) : null;
     return(
         <>
-                <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
-                <select 
-                    required
-                    className="form-select" 
-                    id="element" 
-                    name="element">
-                        <option>Я владею элементом...</option> 
-                        {elem}
-                </select>
+         
+            {elem}
+         
         </>
     )
 }

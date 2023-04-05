@@ -28,7 +28,7 @@ const HeroesAddForm = () => {
 
     const {request} = useHttp();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const element = getOptions(filters[0])
+    const element = filters[0] ?  getOptions(filters[0]) : null;
     const onSubmitServers = (hero) => {
         hero.id = uuidv4();
 
@@ -95,23 +95,14 @@ const HeroesAddForm = () => {
 
 const getOptions = (data) =>{
    
-    const optionKeys = data ? Object.keys(data[0]) : null;
-    const optionValues = data ? Object.values(data[0]) : null;
-    const elem = optionKeys ? optionKeys.map((item, i) => {
+  return data.map((item) => {
         
         return (
             <>
-                <option  key={i} value={item}>{optionValues[i]}</option> 
+                <option  key={item.id} value={item.value}>{item.name}</option> 
             </>
         )
-    }) : null;
-    return(
-        <>
-         
-            {elem}
-         
-        </>
-    )
+    })
 }
 
 export default HeroesAddForm;

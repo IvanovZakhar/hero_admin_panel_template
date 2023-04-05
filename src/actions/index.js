@@ -39,9 +39,9 @@ export const filtersFetched = (filters) => {
     }
 }
 
-export const onFilterHero = (newHeroes) => {
+export const onUpCondition = (status) => {
     return {
-        type: 'FILTER_HEROES_FETCHING',
-        filterHero: newHeroes
+        type: 'FILTER_CONDITION_FETCHING',
+        condition: status
     }
 }

@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { onUpCondition } from '../../actions';
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
@@ -8,23 +9,19 @@ import { useSelector } from 'react-redux';
 
 const HeroesFilters = () => {
     const {filters} = useSelector(state => state);
-    console.log(filters[0])
-    const onFilterHero = (e) => {
-        console.log(e)
-    }
-    const buttons = addButtons(filters[0], onFilterHero)
-    console.log(buttons)
+    const dispatch = useDispatch();
+ 
+    const onFilterHero = (condition) => dispatch(onUpCondition(condition));
+ 
+    const buttons = filters[0] ? addButtons(filters[0], onFilterHero) : null;
+    
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
                 <p className="card-text">Отфильтруйте героев по элементам</p>
                 <div className="btn-group">
-                    {/* <button className="btn btn-outline-dark active">Все</button>
-                    <button className="btn btn-danger">Огонь</button>
-                    <button className="btn btn-primary">Вода</button>
-                    <button className="btn btn-success">Ветер</button>
-                    <button className="btn btn-secondary">Земля</button> */}
-                    {buttons}
+                     <button onClick={() => onFilterHero('all')} className="btn btn-outline-dark active">Все</button>
+                     {buttons}
                 </div>
             </div>
         </div>
@@ -32,18 +29,16 @@ const HeroesFilters = () => {
 }
 
 const addButtons = (typeButton, filters) =>{
- 
-    const optionKeys = typeButton ? Object.keys(typeButton[0]) : null;
-    const optionValues = typeButton ? Object.values(typeButton[0]) : null;
-    console.log(optionKeys)
-    console.log(optionValues)
-    return( optionKeys ? optionKeys.map((item, i )=> {
+
+    return typeButton.map((item) => {
         return(
             <>
-                <button key={i} onClick={() => filters(item)} className={item}>{optionValues[i]}</button>
+                <button  key={item.id} onClick={() => filters(item.value)} className={`btn ${item.style}`}>{item.name}</button>
             </>
         )
-    }): null)
+    })
+ 
+
 }
 
 export default HeroesFilters;
